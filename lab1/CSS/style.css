@@ -1,5 +1,9 @@
 /* CSS/style.css - Windows 98 Edition */
 
+.hidden {
+    display: none;
+}
+
 :root {
     --win-bg: #c0c0c0;          /* Классический серый */
     --win-dark: #808080;        /* Темно-серый для теней */

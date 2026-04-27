@@ -1,180 +1,23 @@
-/* CSS/style.css - Windows 98 Edition */
-
-:root {
-    --win-bg: #c0c0c0;          /* Классический серый */
-    --win-dark: #808080;        /* Темно-серый для теней */
-    --win-darker: #404040;      /* Почти черный для глубоких теней */
-    --win-light: #ffffff;       /* Белый для бликов */
-    --win-light-gray: #dfdfdf;  /* Светло-серый */
-    --win-blue: #000080;        /* Синий для заголовков окон */
-    --desktop: #008080;         /* Фирменный бирюзовый цвет рабочего стола */
-}
-
-* {
-    box-sizing: border-box;
-    /* Системные шрифты тех времен */
-    font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
-}
 
 body {
-    background-color: var(--desktop);
-    color: black;
-    margin: 0;
-    padding: 20px;
-    font-size: 12px; /* Мелкий шрифт, как в старых ОС */
-}
-
-.container {
     display: flex;
     gap: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: flex-start;
 }
 
-/* --- Окна (Sidebar и Content) --- */
-.sidebar, .content {
-    background-color: var(--win-bg);
-    padding: 2px; /* Узкая рамка вокруг контента */
-    /* Классическая выпуклая 3D-рамка */
-    border: 2px solid;
-    border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
-    box-shadow: inset 1px 1px var(--win-light-gray), inset -1px -1px var(--win-dark);
-    border-radius: 0; /* Никаких скруглений! */
+#settings-panel {
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 8px;
 }
 
-.sidebar {
-    flex: 0 0 320px;
+fieldset {
+    margin-bottom: 10px;
 }
 
-.content {
-    flex: 1;
-    overflow-x: auto;
+svg {
+    border: 1px solid black;
 }
 
-/* --- Заголовки окон (Title Bar) --- */
-h2 {
-    background-color: var(--win-blue);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    padding: 3px 5px;
-    letter-spacing: 0.5px;
-}
-
-/* Отступы внутри окна */
-form {
-    margin: 10px;
-}
-
-/* --- Разделитель (Вдавленная линия) --- */
-hr {
-    border: none;
-    border-top: 1px solid var(--win-dark);
-    border-bottom: 1px solid var(--win-light);
-    margin: 15px 10px;
-}
-
-.form-group {
-    margin-bottom: 8px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.row {
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-}
-
-.form-group.row input {
-    width: 100%;
-}
-
-label {
-    font-size: 12px;
-    margin-bottom: 2px;
-}
-
-/* --- Поля ввода (Inset 3D - вдавленные) --- */
-input[type="text"], input[type="number"], select {
-    padding: 3px 4px;
-    background-color: var(--win-light);
-    border: 2px solid;
-    border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-    border-radius: 0;
-    font-size: 12px;
-    outline: none;
-}
-
-input:focus, select:focus {
-    background-color: #ffffff;
-}
-
-.checkbox-label {
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 5px;
-    cursor: default;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin: 15px 10px 10px 10px;
-}
-
-/* --- Кнопки (Outset 3D - выпуклые) --- */
-input[type="button"] {
-    flex: 1;
-    padding: 4px 10px;
-    background-color: var(--win-bg);
-    border: 2px solid;
-    border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
-    box-shadow: inset 1px 1px var(--win-light-gray), inset -1px -1px var(--win-dark);
-    border-radius: 0;
-    cursor: default; /* курсор не менялся на pointer при наведении */
-    font-size: 12px;
-    color: black;
-}
-
-/* не было hover-эффектов, только реакция на клик (вдавливание) */
-input[type="button"]:active {
-    border-color: var(--win-darker) var(--win-light) var(--win-light) var(--win-darker);
-    box-shadow: inset 1px 1px var(--win-dark), inset -1px -1px var(--win-light-gray);
-    padding: 5px 9px 3px 11px; /* Сдвигаем текст вниз и вправо при клике */
-}
-
-/* --- Таблица (Вдавленный контейнер) --- */
-table {
-    width: calc(100% - 20px);
-    margin: 10px;
-    border-collapse: collapse;
-    background-color: var(--win-light);
-    border: 2px solid;
-    border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-}
-
-th, td {
-    padding: 4px 6px;
-    text-align: left;
-    border: 1px solid var(--win-bg);
-    font-size: 12px;
-}
-
-/* Заголовки столбцов таблицы выглядели как кнопки */
-th {
-    background-color: var(--win-bg);
-    border: 2px solid;
-    border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
-    font-weight: normal;
-}
-
-/* Имитация выделения строки (как в Windows Explorer) */
-tbody tr:hover {
-    background-color: var(--win-blue);
-    color: white;
+.hidden {
+    display: none;
 }

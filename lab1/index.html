@@ -64,9 +64,9 @@
                 </select>
                 <label class="checkbox-label"><input type="checkbox" id="desc1"> По убыванию</label>
             </div>
-            <div class="form-group">
+            <div id="block-sort2" class="form-group">
                 <label>Второй уровень:</label>
-                <select id="sort2">
+                <select id="sort2" class="hidden">
                     <option value="none">Нет</option>
                     <option value="Название">Название</option>
                     <option value="Тип">Тип</option>
@@ -75,8 +75,11 @@
                     <option value="Год">Год</option>
                     <option value="Высота">Высота</option>
                 </select>
-                <label class="checkbox-label"><input type="checkbox" id="desc2"> По убыванию</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="desc2"> По убыванию
+                </label>
             </div>
+
             <div class="buttons">
                 <input id="doSort" type="button" class="btn-primary" value="Сортировать">
                 <input id="clearSort" type="button" class="btn-secondary" value="Сбросить сортировку">
