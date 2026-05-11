@@ -1,0 +1,140 @@
+
+.App {
+  text-align: left;
+  padding: 20px 40px;
+  margin: 0 auto;
+  align-items: flex-start;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #a9a9a9;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #e5e5e5;
+  font-weight: bold;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination span.page-number {
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.pagination span.page-number:hover {
+  background-color: #e9ecef;
+}
+
+.pagination span.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-color: #007bff;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-bottom: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.filter-form h4 {
+  margin: 0 0 15px 0;
+  text-align: left;
+}
+
+.filter-form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.filter-form input {
+  width: 200px;
+  padding: 3px 5px;
+  border: 1px solid #a9a9a9;
+  border-radius: 2px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.filter-buttons button {
+  padding: 4px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #7a7a7a;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.filter-buttons button:hover {
+  background-color: #e0e0e0;
+}

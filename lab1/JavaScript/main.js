@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let currentData = buildings;
+    let currentData = stations;
 
     createTable(currentData, 'list');
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formSort.addEventListener("change", updateVisibility);
 
     const create = () => {
-        createTable(sortTable(filterData(buildings), createSortArr("sort")), 'list');
+        createTable(sortTable(filterData(stations), createSortArr("sort")), 'list');
     }
 
     btnFind.addEventListener("click", () => {

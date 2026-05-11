@@ -1,9 +1,9 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    showTable("build", buildings);
+    showTable("build", stations);
 
-    drawGraph(buildings);
+    drawGraph(stations);
 
     const btnToggleTable = document.getElementById("btn-toggle-table");
     const tableEl = document.getElementById("build");
@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const Min = document.getElementById("yMin");
 
     Max.addEventListener("click", () => {
-        drawGraph(buildings);
+        drawGraph(stations);
     });
 
     Min.addEventListener("click", () => {
-        drawGraph(buildings);
+        drawGraph(stations);
     });
 
     // d3.select("#yMax").on("change", drawGraph(buildings));

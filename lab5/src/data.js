@@ -1,4 +1,5 @@
-stations= [
+
+const buildings= [
     {
         "Название": "Бурдж-Халифа",
         "Тип": "Небоскрёб",
@@ -511,4 +512,8 @@ stations= [
         "Год": 1980,
         "Высота": 350
     }
-]
+];
+ 
+
+ 
+export default  buildings;
