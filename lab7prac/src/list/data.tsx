@@ -1,17 +1,17 @@
-import Image1 from './image/i1 (1).png';
-import Image2 from './image/i1 (2).png';
-import Image3 from './image/i1 (3).png';
-import Image4 from './image/i1 (4).png';
-import Image5 from './image/i1 (5).png';
-import Image6 from './image/i1 (6).png';
-import Image7 from './image/i1 (7).png';
-import Image8 from './image/i1 (8).png';
-import Image9 from './image/i1 (9).png';
-import Image10 from './image/i1 (10).png';
-import Image11 from './image/i1 (11).png';
-import Image12 from './image/i1 (12).png';
-import Image13 from './image/i1 (13).png';
-import Image14 from './image/i1 (14).png';
+import Image1 from '../image/i1 (1).png';
+import Image2 from '../image/i1 (2).png';
+import Image3 from '../image/i1 (3).png';
+import Image4 from '../image/i1 (4).png';
+import Image5 from '../image/i1 (5).png';
+import Image6 from '../image/i1 (6).png';
+import Image7 from '../image/i1 (7).png';
+import Image8 from '../image/i1 (8).png';
+import Image9 from '../image/i1 (9).png';
+import Image10 from '../image/i1 (10).png';
+import Image11 from '../image/i1 (11).png';
+import Image12 from '../image/i1 (12).png';
+import Image13 from '../image/i1 (13).png';
+import Image14 from '../image/i1 (14).png';
 
 export interface Station {
     id: number;
@@ -24,7 +24,6 @@ export interface Station {
     year: number;
     fuel: string;
     img: string;
-    typeCard: string;
 }
 
 const images = {
@@ -60,7 +59,6 @@ const rawData = [
         "Выработка": 110,
         "Год": 2012,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'text-only'
     },
     {
         "Название": "Baihetan Dam",
@@ -71,7 +69,6 @@ const rawData = [
         "Выработка": 62,
         "Год": 2022,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'blue-card'
     },
     {
         "Название": "Itaipu Dam",
@@ -82,7 +79,6 @@ const rawData = [
         "Выработка": 100,
         "Год": 1991,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'beige-card'
     },
     {
         "Название": "Xiluodu",
@@ -93,7 +89,6 @@ const rawData = [
         "Выработка": 57,
         "Год": 2014,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'beige-card'
     },
     {
         "Название": "Belo Monte",
@@ -104,7 +99,6 @@ const rawData = [
         "Выработка": 39,
         "Год": 2019,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'beige-card'
     },
     {
         "Название": "Guri (Simón Bolívar)",
@@ -115,7 +109,6 @@ const rawData = [
         "Выработка": 47,
         "Год": 1986,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'blue-card'
     },
     {
         "Название": "Wudongde",
@@ -126,9 +119,8 @@ const rawData = [
         "Выработка": 39,
         "Год": 2021,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'text-only'
-    }
-   /* ,{
+    },
+    {
         "Название": "Tucuruí",
         "Тип": "Гидро",
         "Страна": "Бразилия",
@@ -137,7 +129,6 @@ const rawData = [
         "Выработка": 21,
         "Год": 2007,
         "Вид топлива": "Возобновляемый",
-        "Тип карточки": 'text-only'
     },
     {
         "Название": "Jebel Ali Power Station",
@@ -148,9 +139,8 @@ const rawData = [
         "Выработка": 30,
         "Год": 1990,
         "Вид топлива": "Невозобновляемый",
-        "Тип карточки": 'text-only'
-    },*/
-  /*  {
+    },
+    {
         "Название": "Kashiwazaki–Kariwa",
         "Тип": "Атомная",
         "Страна": "Япония",
@@ -499,7 +489,7 @@ const rawData = [
         "Выработка": 27,
         "Год": 1993,
         "Вид топлива": "Невозобновляемый"
-    },    {
+    }, {
         "Название": "Leningrad NPP",
         "Тип": "Атомная",
         "Страна": "Россия",
@@ -518,7 +508,7 @@ const rawData = [
         "Выработка": 25,
         "Год": 2023,
         "Вид топлива": "Невозобновляемый"
-    }*/
+    }
 ];
 
 export const stations: Station[] = rawData.map((s, index) => {
@@ -537,6 +527,5 @@ export const stations: Station[] = rawData.map((s, index) => {
         year: s["Год"],
         fuel: s["Вид топлива"],
         img: imgArray[index % imgArray.length],
-        typeCard: s["Тип карточки"]
     };
 });
