@@ -1,12 +1,12 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    showTable("build", stations);
+    showTable("building", stations);
 
     drawGraph(stations);
 
     const btnToggleTable = document.getElementById("btn-toggle-table");
-    const tableEl = document.getElementById("build");
+    const tableEl = document.getElementById("building");
 
     btnToggleTable.addEventListener("click", () => {
         const isHidden = tableEl.classList.toggle("hidden");
