@@ -1,31 +1,80 @@
 import React from 'react';
-import { Box, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
-import { stations } from '../data';
+import {Box} from '@mui/material';
+
+import i1 from '../image/i1 (1).png';
+import i2 from '../image/i1 (2).png';
+import i3 from '../image/i1 (3).png';
+import i4 from '../image/i1 (4).png';
+import i5 from '../image/i1 (5).png';
+import i6 from '../image/i1 (6).png';
+
 
 const Gallery = () => {
-    const images = stations.filter(s => s.img !== "");
-
     return (
-        <Box sx={{ height: 400, overflowY: 'auto', borderRadius: 2, border: '1px solid #eee', p: 2 }}>
-            <ImageList variant="masonry" cols={3} gap={16}>
-                {images.map((item) => (
-                    <ImageListItem key={item.id}>
-                        <img
-                            src={item.img}
-                            alt={item.name}
-                            loading="lazy"
-                            style={{ borderRadius: 8 }}
-                        />
-                        <ImageListItemBar
-                            title={item.name}
-                            position="bottom"
-                            sx={{ borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}
-                        />
-                    </ImageListItem>
+        <Box sx={{
+            width: '100%',
+            height: '100%',
+            display: 'grid',
+            gridTemplateColumns: '30% 70%',
+            overflow: 'hidden',
+            mb: 5
+        }}>
+            <Box
+                component="img"
+                src={i1}
+                alt="t"
+                sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    display: 'block'
+                }}
+            />
+
+            <Box sx={{
+                height: '100%',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gridTemplateRows: 'repeat(3, 1fr)',
+                minWidth: 0,
+                minHeight: 0
+            }}>
+                <Box
+                    component="img"
+                    src={i2}
+                    alt="t"
+                    sx={{
+                        gridColumn: 'span 2',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        display: 'block'
+                    }}
+                />
+
+                {[i3, i4, i5, i6].map((src, index) => (
+                    <Box
+                        key={index}
+                        component="img"
+                        src={src}
+                        alt={`img${index}`}
+                        sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            display: 'block'
+                        }}
+                    />
                 ))}
-            </ImageList>
+            </Box>
         </Box>
     );
-};
+}
 
 export default Gallery;
