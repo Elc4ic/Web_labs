@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>D3.js Визуализация</title>
+    <script src="../d3.v7.min.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Задание 1: Рисунок "Кораблик"</h2>
+    <svg id="svg1" width="500" height="450"></svg>
+</div>
+
+<div class="container">
+    <h2>Задание 2: Трансформации рисунка</h2>
+    <svg id="svg2" width="1000" height="450"></svg>
+</div>
+
+<div class="container">
+    <h2>Задание 3: Бесконечное перемещение</h2>
+    <svg id="svg3" width="800" height="450" style="overflow: hidden;"></svg>
+</div>
+
+<div class="container">
+    <h2>Задание 4: Графики двух функций</h2>
+    <svg id="svg4" width="600" height="450"></svg>
+</div>
+
+<script>
+    const colors = {
+        hull: '#808080',
+        sail: '#d31538',
+        flag: '#90ee90',
+        porthole: '#87ceeb'
+    };
+
+    const scale = 10;
+
+    function drawBoat(group, colors) {
+        group.append('polygon')
+            .attr('points', [[1, 18], [21, 14], [18, 20], [1, 20]].map(p => [p[0] * scale, p[1] * scale].join(',')).join(' '))
+            .attr('fill', colors.hull)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 2);
+
+        group.append('polygon')
+            .attr('points', [[10, 4], [5, 17], [20, 14]].map(p => [p[0] * scale, p[1] * scale].join(',')).join(' '))
+            .attr('fill', colors.sail)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 2);
+
+        group.append('polygon')
+            .attr('points', [[10, 1], [16, 1], [16, 4], [10, 4]].map(p => [p[0] * scale, p[1] * scale].join(',')).join(' '))
+            .attr('fill', colors.flag)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 2);
+
+        group.append('circle')
+            .attr('cx', 16 * scale)
+            .attr('cy', 18 * scale)
+            .attr('r', 1 * scale)
+            .attr('fill', colors.porthole)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 2);
+    }
+
+    //Задание 1
+    const svg1 = d3.select('#svg1');
+    const gridGroup = svg1.append('g').attr('class', 'grid');
+    for (let i = 0; i <= 500; i += 20) {
+        gridGroup.append('line').attr('x1', i).attr('y1', 0).attr('x2', i).attr('y2', 450);
+        gridGroup.append('line').attr('x1', 0).attr('y1', i).attr('x2', 500).attr('y2', i);
+    }
+
+    const g1 = svg1.append('g').attr('transform', 'translate(40, 20)');
+    drawBoat(g1, colors);
+
+    //Задание 2
+    const svg2 = d3.select('#svg2');
+
+    const g2Left = svg2.append('g').attr('transform', 'translate(20, 420) scale(1, -1)');
+    drawBoat(g2Left, colors);
+
+    const g2Mid = svg2.append('g').attr('transform', 'translate(300, 20)');
+    drawBoat(g2Mid, colors);
+
+    const g2Right = svg2.append('g').attr('transform', 'translate(750, 50) translate(220, 210) rotate(-90) translate(-220, -210)');
+    drawBoat(g2Right, colors);
+
+    //Задание 3
+    const svg3 = d3.select('#svg3');
+    const g3 = svg3.append('g');
+    drawBoat(g3, colors);
+
+    const svgWidth = 800;
+    const boatWidth = 440;
+
+    function runAnimation() {
+        g3.attr('transform', `translate(-${boatWidth}, 20) scale(1, 1)`);
+
+        g3.transition()
+            .duration(4000)
+            .ease(d3.easeLinear)
+            .attr('transform', `translate(${svgWidth}, 20) scale(1, 1)`)
+            .on('end', () => {
+                g3.attr('transform', `translate(${svgWidth + boatWidth}, 20) scale(-1, 1)`);
+
+                g3.transition()
+                    .duration(4000)
+                    .ease(d3.easeLinear)
+                    .attr('transform', `translate(0, 20) scale(-1, 1)`)
+                    .on('end', runAnimation);
+            });
+    }
+
+    runAnimation();
+
+    //Задание 4
+    const svg4 = d3.select('#svg4');
+    const margin = {top: 40, right: 40, bottom: 40, left: 50};
+    const width = 600 - margin.left - margin.right;
+    const height = 450 - margin.top - margin.bottom;
+
+    const plotGroup = svg4.append('g')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+    const data = [];
+    for (let x = -2; x <= 6; x += 0.05) {
+        data.push({
+            x: x,
+            f: Math.pow(x, 3) - 6 * Math.pow(x, 2) + x + 5,
+            y: Math.pow(x - 2, 2) - 6
+        });
+    }
+
+    const xScale = d3.scaleLinear()
+        .domain([-2, 6])
+        .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+        .domain([-30, 15])
+        .range([height, 0]);
+
+    const xAxis = d3.axisBottom(xScale).ticks(8);
+    const yAxis = d3.axisLeft(yScale).ticks(10);
+
+    plotGroup.append('g')
+        .attr('class', 'grid')
+        .call(d3.axisBottom(xScale).tickSize(height).tickFormat(''));
+    plotGroup.append('g')
+        .attr('class', 'grid')
+        .call(d3.axisLeft(yScale).tickSize(-width).tickFormat(''));
+
+    plotGroup.append('g')
+        .attr('transform', `translate(0, ${yScale(0)})`)
+        .call(xAxis);
+
+    plotGroup.append('g')
+        .attr('transform', `translate(${xScale(0)}, 0)`)
+        .call(yAxis);
+
+    const lineF = d3.line()
+        .x(d => xScale(d.x))
+        .y(d => yScale(d.f));
+
+    const lineY = d3.line()
+        .x(d => xScale(d.x))
+        .y(d => yScale(d.y));
+
+    plotGroup.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', 'red')
+        .attr('stroke-width', 2)
+        .attr('d', lineF);
+
+    plotGroup.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', 'green')
+        .attr('stroke-width', 2)
+        .attr('d', lineY);
+</script>
+</body>
+</html>

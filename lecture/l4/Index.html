@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 DOM Задачи</title>
+    <script src="../d3.v7.min.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="task">
+    <h2>Задание 1: Уникальные значения из ul.list</h2>
+    <ul class="list">
+        <li>JavaScript</li>
+        <li>CSS</li>
+        <li>HTML</li>
+    </ul>
+    <p>Языки программирования:</p>
+    <ul class="list">
+        <li>Python</li>
+        <li>JavaScript</li>
+        <li>Java</li>
+    </ul>
+    <p>Результат uniqueValues:</p>
+    <pre id="output-z1"></pre>
+</div>
+
+<div class="task">
+    <h2>Задание 2: Класс "active" для первых дочерних элементов div</h2>
+    <div>
+        <p>Первый дочерний элемент в DIV 1 (должен выделиться желтым цветом)</p>
+        <p>Второй дочерний элемент в DIV 1</p>
+    </div>
+    <hr>
+    <div>
+        <span>Первый дочерний элемент в DIV 2 (должен выделиться желтым цветом)</span>
+        <br>
+        <span>Второй дочерний элемент в DIV 2</span>
+    </div>
+</div>
+
+<div class="task">
+    <h2>Задание 3: Добавление элемента в конец ol</h2>
+    <p>Первый список ol:</p>
+    <ol>
+        <li>JavaScript</li>
+        <li>CSS</li>
+        <li>HTML</li>
+    </ol>
+    <p>Второй список ol (внутри div):</p>
+    <div>
+        <ol>
+            <li>D3</li>
+            <li>JQuery</li>
+        </ol>
+    </div>
+</div>
+
+<div class="task">
+    <h2>Задание 5: Двухуровневая сортировка авторов и цен</h2>
+    <p>Список книг послевыполнения сортировки:</p>
+    <ul id="books-list"></ul>
+</div>
+
+<div class="task">
+    <h2>Задание 4: Новый список ul в конце страницы</h2>
+    <p>Список ul на основе всех собранных li на странице:</p>
+</div>
+
+<script>
+    const booksData = [
+        { author: 'Пушкин', title: 'Капитанская дочка', price: 150 },
+        { author: 'Толстой', title: 'Война и мир', price: 400 },
+        { author: 'Пушкин', title: 'Евгений Онегин', price: 120 },
+        { author: 'Лермонтов', title: 'Герой нашего времени', price: 200 },
+        { author: 'Толстой', title: 'Анна Каренина', price: 350 }
+    ];
+
+    const selection = d3.select('#books-list')
+        .selectAll('li')
+        .data(booksData)
+        .enter()
+        .append('li')
+        .text(d => `${d.author}: "${d.title}" — ${d.price} руб.`);
+
+    // Задание 1
+    const uniqueValues = Array.from(new Set(d3.selectAll('ul.list li').nodes().map(li => li.textContent)));
+    console.log("Задание 1 uniqueValues:", uniqueValues);
+    d3.select('#output-z1').text(JSON.stringify(uniqueValues, null, 2));
+
+    // Задание 2
+    d3.selectAll('div > :first-child').classed('active', true);
+
+    // Задание 3
+    const firstText = d3.select('ol li').text();
+    d3.selectAll('ol').append('li').text(firstText);
+
+    // Задание 4
+    const texts = d3.selectAll('li').nodes().map(li => li.textContent);
+
+    d3.select('body')
+        .append('ul')
+        .selectAll('li')
+        .data(texts)
+        .enter()
+        .append('li')
+        .text(d => d);
+
+    // Задание 5
+    selection.sort((a, b) => a.author.localeCompare(b.author) || a.price - b.price);
+</script>
+</body>
+</html>
